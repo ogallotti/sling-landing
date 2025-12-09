@@ -200,88 +200,119 @@ function initMethod() {
     });
 }
 
-// CASES - STACKING CARDS EFFECT
+// CASES - ONE BY ONE REVEAL WITH COUNTERS
 function initCases() {
     const section = document.querySelector('.cases-section');
     const cards = document.querySelectorAll('.case-card');
     
     if (!section || cards.length === 0) return;
 
-    // Stacking animation as you scroll
+    // Animate each card one by one
     cards.forEach((card, i) => {
+        const counters = card.querySelectorAll('.stat-num.counter');
+        
+        // Card reveal animation
         gsap.from(card, {
             scrollTrigger: {
-                trigger: section,
-                start: `top+=${i * 100} 70%`,
-                end: `top+=${i * 100 + 200} 30%`,
-                scrub: 1
+                trigger: card,
+                start: 'top 80%',
+                toggleActions: 'play none none none',
+                onEnter: () => {
+                    // Animate counters when card enters view
+                    counters.forEach(counter => {
+                        const target = parseInt(counter.dataset.target) || 0;
+                        const prefix = counter.dataset.prefix || '';
+                        const suffix = counter.dataset.suffix || '';
+                        
+                        let obj = { val: 0 };
+                        gsap.to(obj, {
+                            val: target,
+                            duration: 2,
+                            ease: 'power2.out',
+                            onUpdate: () => {
+                                counter.textContent = prefix + Math.ceil(obj.val) + suffix;
+                            }
+                        });
+                    });
+                }
             },
-            y: 100 + (i * 50),
+            y: 80,
             opacity: 0,
-            scale: 0.9,
-            rotation: (i % 2 === 0 ? -5 : 5),
-            duration: 1,
+            scale: 0.95,
+            duration: 0.8,
+            delay: i * 0.15,
             ease: 'power3.out'
         });
     });
 }
 
-// ROADMAP - HORIZONTAL TIMELINE (FIXED)
+// ROADMAP - HORIZONTAL SCROLL FROM SCRATCH
 function initRoadmap() {
     const section = document.querySelector('.roadmap-section');
+    const wrapper = document.querySelector('.timeline-wrapper');
     const track = document.querySelector('.timeline-track');
-    const fillLine = document.querySelector('.timeline-line-fill');
     const markers = document.querySelectorAll('.timeline-marker');
+    const fillLine = document.querySelector('.timeline-line-fill');
 
     if (!section || !track || markers.length === 0) return;
 
-    // Make markers visible from start
-    gsap.set(markers, { opacity: 1, scale: 1, y: 0 });
-    gsap.set(fillLine, { width: '0%' });
+    // Initial state: hide all markers
+    markers.forEach((marker, i) => {
+        gsap.set(marker, { 
+            opacity: 0, 
+            y: marker.classList.contains('top') ? -30 : 30,
+            scale: 0.8 
+        });
+    });
+    
+    if (fillLine) gsap.set(fillLine, { width: '0%' });
 
-    const getScrollDistance = () => {
-        const trackWidth = track.scrollWidth;
-        const viewportWidth = window.innerWidth;
-        return Math.max(trackWidth - viewportWidth, 1000);
+    // Calculate how much we need to scroll horizontally
+    const getHorizontalDistance = () => {
+        return track.scrollWidth - window.innerWidth;
     };
 
-    // Create timeline
-    const tl = gsap.timeline({
+    // Main horizontal scroll timeline
+    const mainTL = gsap.timeline({
         scrollTrigger: {
             trigger: section,
             pin: true,
-            scrub: 0.8,
+            scrub: 1,
             start: "top top",
-            end: () => `+=${getScrollDistance()}`,
+            end: () => `+=${getHorizontalDistance() + 500}`,
             invalidateOnRefresh: true
         }
     });
 
-    // Move track horizontally
-    tl.to(track, {
-        x: () => -(track.scrollWidth - window.innerWidth + 100),
+    // 1. Move the track left as we scroll
+    mainTL.to(track, {
+        x: () => -getHorizontalDistance(),
         ease: "none",
         duration: 1
-    }, 0);
+    });
 
-    // Fill line progressively
-    tl.to(fillLine, {
-        width: '100%',
-        ease: "none",
-        duration: 1
-    }, 0);
+    // 2. Fill the line progressively
+    if (fillLine) {
+        mainTL.to(fillLine, {
+            width: '100%',
+            ease: "none",
+            duration: 1
+        }, 0); // Start at same time
+    }
 
-    // Animate markers with slight bounce as they come into view
+    // 3. Reveal markers one by one as we scroll
+    const markerCount = markers.length;
     markers.forEach((marker, i) => {
-        const progress = i / (markers.length - 1);
-        tl.fromTo(marker, 
-            { scale: 0.8 },
-            { scale: 1.1, duration: 0.05, ease: "back.out(2)" },
-            progress * 0.8
-        ).to(marker, 
-            { scale: 1, duration: 0.05 },
-            progress * 0.8 + 0.05
-        );
+        const startProgress = i / markerCount;
+        const duration = 0.08;
+        
+        mainTL.to(marker, {
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            duration: duration,
+            ease: "back.out(1.5)"
+        }, startProgress);
     });
 }
 
