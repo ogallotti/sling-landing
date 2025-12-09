@@ -167,6 +167,7 @@ function initAbout() {
 }
 
 // METHODOLOGY - HORIZONTAL SLIDER (FIXED)
+// METHODOLOGY - HORIZONTAL SLIDER (FIXED)
 function initMethod() {
     const section = document.querySelector('.method-section');
     const slider = document.querySelector('.method-slider');
@@ -175,21 +176,20 @@ function initMethod() {
     
     if (!section || !slider || slides.length === 0) return;
     
-    // Calculate the exact scroll distance needed
-    const getScrollAmount = () => {
-        return slider.scrollWidth - window.innerWidth;
-    };
+    // Total move is -100vw * (slides.length - 1)
+    // For 7 slides moving to show the last one, we move -600vw which is approx -85.7% of 700vw container
+    const xMovePercent = -(100 * (slides.length - 1) / slides.length);
 
     // Create the horizontal scroll animation
     gsap.to(slider, {
-        x: () => -getScrollAmount(),
+        xPercent: xMovePercent,
         ease: "none",
         scrollTrigger: {
             trigger: section,
             pin: true,
             scrub: 0.5,
             start: "top top",
-            end: () => `+=${getScrollAmount()}`,
+            end: "+=5000", // Long scroll for correct feel
             invalidateOnRefresh: true,
             onUpdate: (self) => {
                 // Update dots based on progress
@@ -201,6 +201,7 @@ function initMethod() {
 }
 
 // CASES - HORIZONTAL SCROLL SLIDER
+// CASES - HORIZONTAL SCROLL SLIDER
 function initCases() {
     const section = document.querySelector('.cases-section');
     const slider = document.querySelector('.cases-slider');
@@ -208,21 +209,22 @@ function initCases() {
     
     if (!section || !slider || slides.length === 0) return;
     
-    // Calculate the exact scroll distance needed
-    const getScrollAmount = () => {
-        return slider.scrollWidth - window.innerWidth;
-    };
+    // We have 4 slides (intro + 3 cases) in a 400vw slider.
+    // We want to move 3 full slides to the left so the last one is visible.
+    // Movement = -3 viewport widths.
+    // -300vw relative to 400vw container = -75%.
+    const xMovePercent = -75;
 
     // Create the horizontal scroll animation
     gsap.to(slider, {
-        x: () => -getScrollAmount(),
+        xPercent: xMovePercent, // Using percentage is safer for responsiveness
         ease: "none",
         scrollTrigger: {
             trigger: section,
             pin: true,
             scrub: 0.5,
             start: "top top",
-            end: () => `+=${getScrollAmount()}`,
+            end: "+=4000", // Longer scroll duration prevents jumping
             invalidateOnRefresh: true,
             onUpdate: (self) => {
                 // Animate counters when we scroll past intro slide
