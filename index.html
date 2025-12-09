@@ -25,6 +25,9 @@
         <script
             src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"
         ></script>
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js"
+        ></script>
         <script src="https://unpkg.com/split-type"></script>
         <!-- Alternative to SplitText -->
     </head>
@@ -65,7 +68,7 @@
                 
                 <h1 class="hero-headline">
                     <div>NEGÓCIOS</div>
-                    <div>EDUCACIONAIS</div>
+                    <div>DIGITAIS</div>
                     <div class="reveal-wrapper">
                         <span class="reveal-block"></span>
                         <span class="reveal-text">SEM</span> 
@@ -75,9 +78,14 @@
 
                 <div class="hero-subheadline">
                     Transformamos conhecimento em<br>
-                    impérios digitais escaláveis. 
-                    <div class="hero-line-deco"></div>
+                    impérios digitais escaláveis.<br>
+                    <span class="sub-detail">Não dependemos de estruturas físicas,<br>apenas de estratégia, dados e o poder da internet.</span>
                 </div>
+
+                <button class="cta-hero">
+                    <span class="cta-text">INICIAR PROTOCOLO</span>
+                    <span class="cta-arrow">→</span>
+                </button>
 
                 <div class="hero-footer">
                     <div class="scroll-indicator">
@@ -151,7 +159,110 @@
         <!-- Lenis Smooth Scroll -->
         <script src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script> 
 
-        <!-- 3. METHOD SECTION (Horizontal Scroll) -->
+        <!-- 3. CASES DE SUCESSO -->
+        <section class="cases-section">
+            <div class="cases-container">
+                <div class="cases-header">
+                    <h2 class="section-title">CASES</h2>
+                    <div class="section-number">[03]</div>
+                </div>
+
+                <div class="cases-intro">
+                    <p>Resultados reais.<br>Transformação comprovada.</p>
+                </div>
+
+                <div class="cases-grid">
+                    <!-- Case 01: Dr. Demian -->
+                    <article class="case-card" data-tilt>
+                        <div class="case-image">
+                            <div class="case-avatar">👨‍⚕️</div>
+                            <div class="case-glow"></div>
+                        </div>
+                        <div class="case-info">
+                            <h3 class="case-name">Dr. Demian Borges</h3>
+                            <div class="case-tags">
+                                <span class="tag">Medicina Integrativa</span>
+                                <span class="tag">Lançamento & Perpétuo</span>
+                            </div>
+                            <div class="case-stats">
+                                <div class="case-stat">
+                                    <span class="stat-num counter" data-target="400" data-prefix="+" data-suffix="k">0</span>
+                                    <span class="stat-text">Seguidores</span>
+                                </div>
+                                <div class="case-stat">
+                                    <span class="stat-num counter" data-target="2000" data-prefix="+" data-suffix="">0</span>
+                                    <span class="stat-text">Alunos</span>
+                                </div>
+                                <div class="case-stat">
+                                    <span class="stat-num">+7</span>
+                                    <span class="stat-text">Dígitos Faturados</span>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Case 02: Tábita Cintra -->
+                    <article class="case-card" data-tilt>
+                        <div class="case-image">
+                            <div class="case-avatar">💄</div>
+                            <div class="case-glow"></div>
+                        </div>
+                        <div class="case-info">
+                            <h3 class="case-name">Tábita Cintra</h3>
+                            <div class="case-tags">
+                                <span class="tag">Estética</span>
+                                <span class="tag">Escala Massiva</span>
+                            </div>
+                            <div class="case-stats">
+                                <div class="case-stat">
+                                    <span class="stat-num counter" data-target="600" data-prefix="+" data-suffix="k">0</span>
+                                    <span class="stat-text">Seguidores</span>
+                                </div>
+                                <div class="case-stat">
+                                    <span class="stat-num counter" data-target="5000" data-prefix="+" data-suffix="">0</span>
+                                    <span class="stat-text">Alunos</span>
+                                </div>
+                                <div class="case-stat">
+                                    <span class="stat-num">+7</span>
+                                    <span class="stat-text">Dígitos Faturados</span>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Case 03: Malu Celestino -->
+                    <article class="case-card" data-tilt>
+                        <div class="case-image">
+                            <div class="case-avatar">⭐</div>
+                            <div class="case-glow"></div>
+                        </div>
+                        <div class="case-info">
+                            <h3 class="case-name">Malu Celestino</h3>
+                            <div class="case-tags">
+                                <span class="tag">Influencer</span>
+                                <span class="tag">Recorrência</span>
+                            </div>
+                            <div class="case-stats">
+                                <div class="case-stat">
+                                    <span class="stat-num counter" data-target="100" data-prefix="+" data-suffix="k">0</span>
+                                    <span class="stat-text">Seguidores</span>
+                                </div>
+                                <div class="case-stat">
+                                    <span class="stat-num">∞</span>
+                                    <span class="stat-text">Produtos Ativos</span>
+                                </div>
+                                <div class="case-stat">
+                                    <span class="stat-num">+7</span>
+                                    <span class="stat-text">Dígitos Faturados</span>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. METODOLOGIA - 6 PILARES (Horizontal Scroll) -->
         <section class="method-section">
             <div class="method-progress-bar">
                 <div class="method-progress-fill"></div>
@@ -161,10 +272,10 @@
                 
                 <!-- SCREEN 1: Intro -->
                 <div class="method-panel intro-panel">
-                    <h2 class="section-title">O MÉTODO</h2>
+                    <h2 class="section-title">METODOLOGIA</h2>
                     <div class="method-intro-divider"></div>
                     <p class="method-intro-text">
-                        Quatro pilares<br>
+                        Seis pilares<br>
                         para dominar<br>
                         o mercado digital.
                     </p>
@@ -173,82 +284,170 @@
                     </div>
                 </div>
 
-                <!-- SCREEN 2: Performance -->
+                <!-- PILAR 01: Esteira de Produtos -->
                 <div class="method-panel card-panel full-slide">
                     <article class="service-slide">
                         <div class="slide-header">
                             <span class="slide-index">01 ////</span>
-                            <h3 class="slide-title">PERFORMANCE</h3>
+                            <h3 class="slide-title">ESTEIRA DE PRODUTOS</h3>
                         </div>
                         <div class="slide-body">
-                            <div class="slide-visual visual-performance">
-                                <!-- CSS Animation Bars -->
-                                <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
+                            <div class="slide-visual visual-esteira">
+                                <div class="funnel-stage">$</div>
+                                <div class="funnel-stage">$$</div>
+                                <div class="funnel-stage">$$$</div>
+                                <div class="funnel-arrow">→</div>
                             </div>
                             <div class="slide-info">
                                 <p class="slide-description">
-                                    Gestão de tráfego com foco em ROI. 
-                                    Cada centavo investido é rastreado, otimizado e multiplicado.
+                                    A base de tudo. Uma sequência lógica de produtos onde haja recompra e desenvolvimento do LTV (Lifetime Value) do cliente.
                                 </p>
                                 <ul class="slide-features">
-                                    <li>Meta Ads & Google Ads</li>
-                                    <li>Tracking Avançado</li>
-                                    <li>Dashboards em Tempo Real</li>
+                                    <li>Produto de Entrada</li>
+                                    <li>Produto Core</li>
+                                    <li>High Ticket</li>
                                 </ul>
                             </div>
                         </div>
                     </article>
                 </div>
 
-                <!-- SCREEN 3: Branding -->
+                <!-- PILAR 02: Perpétuo -->
                 <div class="method-panel card-panel full-slide">
                     <article class="service-slide">
                         <div class="slide-header">
                             <span class="slide-index">02 ////</span>
-                            <h3 class="slide-title">BRANDING</h3>
+                            <h3 class="slide-title">PERPÉTUO</h3>
                         </div>
                         <div class="slide-body">
-                            <div class="slide-visual visual-branding">
-                                <!-- CSS Animation Grid -->
-                                <div class="grid-box"></div><div class="grid-box"></div><div class="grid-box"></div>
-                                <div class="grid-box"></div><div class="grid-box"></div><div class="grid-box"></div>
-                                <div class="grid-box"></div><div class="grid-box"></div><div class="grid-box"></div>
+                            <div class="slide-visual visual-perpetuo">
+                                <div class="calendar-grid">
+                                    <span class="day active">$</span><span class="day active">$</span><span class="day active">$</span><span class="day active">$</span><span class="day active">$</span>
+                                    <span class="day active">$</span><span class="day active">$</span>
+                                </div>
                             </div>
                             <div class="slide-info">
                                 <p class="slide-description">
-                                     Design que constrói legados. Identidade visual brutalista que posiciona sua marca no futuro.
+                                    Não acreditamos apenas em modelos sazonais. Seu negócio deve vender todos os dias. O perpétuo garante fluxo de caixa constante.
                                 </p>
                                 <ul class="slide-features">
-                                    <li>Identidade Visual</li>
-                                    <li>Web Design High-End</li>
-                                    <li>Creative Direction</li>
+                                    <li>Vendas Diárias</li>
+                                    <li>Fluxo de Caixa Estável</li>
+                                    <li>Previsibilidade</li>
                                 </ul>
                             </div>
                         </div>
                     </article>
                 </div>
 
-                <!-- SCREEN 4: Tech & AI -->
+                <!-- PILAR 03: Ações de Vendas -->
                 <div class="method-panel card-panel full-slide">
                     <article class="service-slide">
                         <div class="slide-header">
                             <span class="slide-index">03 ////</span>
-                            <h3 class="slide-title">TECH & AI</h3>
+                            <h3 class="slide-title">AÇÕES DE VENDAS</h3>
                         </div>
                         <div class="slide-body">
-                            <div class="slide-visual visual-tech">
-                                <!-- CSS Animation Particles -->
-                                <div class="particle"></div><div class="particle"></div><div class="particle"></div>
-                                <div class="particle"></div><div class="particle"></div>
+                            <div class="slide-visual visual-acoes">
+                                <div class="pulse-ring"></div>
+                                <div class="pulse-ring delay-1"></div>
+                                <div class="pulse-ring delay-2"></div>
+                                <div class="pulse-center">🎯</div>
                             </div>
                             <div class="slide-info">
                                 <p class="slide-description">
-                                     CRMs e automações inteligentes. A tecnologia trabalhando enquanto você dorme.
+                                    O perpétuo não roda sozinho. Para ter vendas todos os meses, é preciso movimento, tráfego intencional e campanhas ativas.
                                 </p>
                                 <ul class="slide-features">
-                                    <li>Automação de Vendas</li>
-                                    <li>Implementação de CRM</li>
-                                    <li>AI Chatbots</li>
+                                    <li>Campanhas Mensais</li>
+                                    <li>Tráfego Intencional</li>
+                                    <li>Promoções Estratégicas</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+
+                <!-- PILAR 04: Lançamentos -->
+                <div class="method-panel card-panel full-slide">
+                    <article class="service-slide">
+                        <div class="slide-header">
+                            <span class="slide-index">04 ////</span>
+                            <h3 class="slide-title">LANÇAMENTOS</h3>
+                        </div>
+                        <div class="slide-body">
+                            <div class="slide-visual visual-lancamento">
+                                <div class="rocket">🚀</div>
+                                <div class="rocket-trail"></div>
+                            </div>
+                            <div class="slide-info">
+                                <p class="slide-description">
+                                    Utilizado de forma sazonal e periódica. É o momento de pico de faturamento com uma oferta extraordinária e irresistível.
+                                </p>
+                                <ul class="slide-features">
+                                    <li>Picos de Faturamento</li>
+                                    <li>Ofertas Irresistíveis</li>
+                                    <li>Eventos Ao Vivo</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+
+                <!-- PILAR 05: Inside Sales -->
+                <div class="method-panel card-panel full-slide">
+                    <article class="service-slide">
+                        <div class="slide-header">
+                            <span class="slide-index">05 ////</span>
+                            <h3 class="slide-title">INSIDE SALES</h3>
+                        </div>
+                        <div class="slide-body">
+                            <div class="slide-visual visual-sales">
+                                <div class="phone-icon">📞</div>
+                                <div class="chat-bubbles">
+                                    <span class="bubble">💬</span>
+                                    <span class="bubble">💬</span>
+                                    <span class="bubble">💬</span>
+                                </div>
+                            </div>
+                            <div class="slide-info">
+                                <p class="slide-description">
+                                    Vendas não acontecem apenas no automático. Elas precisam ser estimuladas através de técnicas de venda 1 a 1 e recuperação ativa.
+                                </p>
+                                <ul class="slide-features">
+                                    <li>Venda Consultiva</li>
+                                    <li>Recuperação de Leads</li>
+                                    <li>Atendimento Humanizado</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+
+                <!-- PILAR 06: Ações Orgânicas -->
+                <div class="method-panel card-panel full-slide">
+                    <article class="service-slide">
+                        <div class="slide-header">
+                            <span class="slide-index">06 ////</span>
+                            <h3 class="slide-title">AÇÕES ORGÂNICAS</h3>
+                        </div>
+                        <div class="slide-body">
+                            <div class="slide-visual visual-organico">
+                                <div class="social-icons">
+                                    <span class="social-icon">📱</span>
+                                    <span class="social-icon">📸</span>
+                                    <span class="social-icon">🎬</span>
+                                </div>
+                                <div class="heart-pulse">❤️</div>
+                            </div>
+                            <div class="slide-info">
+                                <p class="slide-description">
+                                    Imprescindíveis para diminuir o custo de tráfego a longo prazo e aumentar a autoridade da marca no mercado.
+                                </p>
+                                <ul class="slide-features">
+                                    <li>Branding Consistente</li>
+                                    <li>Conteúdo de Valor</li>
+                                    <li>Autoridade no Mercado</li>
                                 </ul>
                             </div>
                         </div>
@@ -262,21 +461,24 @@
                 <div class="dot"></div>
                 <div class="dot"></div>
                 <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
             </div>
         </section>
-        <!-- 4. IARA SECTION (AI Chat) -->
+        <!-- 5. IARA SECTION (AI Chat) -->
         <section class="iara-section">
             <div class="iara-bg-gradient"></div>
             <div class="iara-scanlines"></div>
             
             <div class="iara-header">
                 <h2 class="section-title">IARA</h2>
-                <div class="section-number">[04]</div>
+                <div class="section-number">[05]</div>
             </div>
             
             <div class="iara-subheader">
-                <div class="line">INTELIGÊNCIA QUE</div>
-                <div class="line">CONVERTE</div>
+                <div class="line">CONHEÇA A IARA</div>
+                <div class="line-sub">Seu SDR e Suporte trabalhando 24/7.</div>
             </div>
 
             <div class="chat-container">
@@ -289,27 +491,44 @@
                 </div>
                 
                 <div class="chat-messages">
-                    <!-- Messages will be injected/revealed via JS -->
                     <div class="message bot-message">
                          <div class="avatar">🤖</div>
                          <div class="msg-content">
-                            Olá! Sou a Iara, assistente virtual da Sling. 🚀
+                            Olá! Sou a inteligência artificial da Sling. 🚀
                          </div>
                     </div>
                     <div class="message bot-message delayed-1">
                          <div class="avatar">🤖</div>
                          <div class="msg-content">
-                            Como posso ajudar você hoje? de forma escalável?
+                            Analisando seus leads em tempo real...
                          </div>
                     </div>
-                    <!-- User options simulated -->
-                    <div class="message user-options delayed-2">
-                        <button class="chat-option">Quero escalar vendas</button>
+                    <div class="message bot-message delayed-2">
+                         <div class="avatar">🤖</div>
+                         <div class="msg-content">
+                            ✅ Oportunidade de venda identificada. Iniciando qualificação e agendamento.
+                         </div>
                     </div>
                     
                     <div class="typing-indicator hidden">
                         <span></span><span></span><span></span>
                     </div>
+                </div>
+            </div>
+
+            <!-- IARA Features -->
+            <div class="iara-features">
+                <div class="feature-item">
+                    <span class="feature-icon">🟢</span>
+                    <span class="feature-text">API Oficial do WhatsApp (Anti-bloqueio)</span>
+                </div>
+                <div class="feature-item">
+                    <span class="feature-icon">⏰</span>
+                    <span class="feature-text">Atendimento e Suporte 24 horas</span>
+                </div>
+                <div class="feature-item">
+                    <span class="feature-icon">🎯</span>
+                    <span class="feature-text">Qualificação de Leads e Agendamento Automático</span>
                 </div>
             </div>
 
@@ -328,17 +547,202 @@
                 </div>
             </div>
         </section>
-        <!-- 5. PROPOSAL SECTION (Pricing) -->
+
+        <!-- 6. ROADMAP - TIMELINE -->
+        <section class="roadmap-section">
+            <div class="roadmap-container">
+                <div class="roadmap-header">
+                    <h2 class="section-title">ROADMAP</h2>
+                    <div class="section-number">[06]</div>
+                </div>
+
+                <div class="roadmap-intro">
+                    <p>As 12 Fases do Projeto</p>
+                </div>
+
+                <!-- Horizontal Timeline -->
+                <div class="timeline-wrapper">
+                    <div class="timeline-track">
+                        <div class="timeline-line-bg"></div>
+                        <div class="timeline-line-fill"></div>
+                        
+                        <!-- Phase markers alternating top/bottom -->
+                        <div class="timeline-marker top" data-phase="1">
+                            <div class="marker-dot"></div>
+                            <div class="marker-content">
+                                <span class="marker-num">01</span>
+                                <span class="marker-title">Estudo de Mercado</span>
+                            </div>
+                        </div>
+                        
+                        <div class="timeline-marker bottom" data-phase="2">
+                            <div class="marker-dot"></div>
+                            <div class="marker-content">
+                                <span class="marker-num">02</span>
+                                <span class="marker-title">Copywriting</span>
+                            </div>
+                        </div>
+                        
+                        <div class="timeline-marker top" data-phase="3">
+                            <div class="marker-dot"></div>
+                            <div class="marker-content">
+                                <span class="marker-num">03</span>
+                                <span class="marker-title">Posicionamento</span>
+                            </div>
+                        </div>
+                        
+                        <div class="timeline-marker bottom" data-phase="4">
+                            <div class="marker-dot"></div>
+                            <div class="marker-content">
+                                <span class="marker-num">04</span>
+                                <span class="marker-title">Tráfego Pago</span>
+                            </div>
+                        </div>
+                        
+                        <div class="timeline-marker top" data-phase="5">
+                            <div class="marker-dot"></div>
+                            <div class="marker-content">
+                                <span class="marker-num">05</span>
+                                <span class="marker-title">Produtos</span>
+                            </div>
+                        </div>
+                        
+                        <div class="timeline-marker bottom" data-phase="6">
+                            <div class="marker-dot"></div>
+                            <div class="marker-content">
+                                <span class="marker-num">06</span>
+                                <span class="marker-title">Automações</span>
+                            </div>
+                        </div>
+                        
+                        <div class="timeline-marker top" data-phase="7">
+                            <div class="marker-dot"></div>
+                            <div class="marker-content">
+                                <span class="marker-num">07</span>
+                                <span class="marker-title">Estratégia</span>
+                            </div>
+                        </div>
+                        
+                        <div class="timeline-marker bottom" data-phase="8">
+                            <div class="marker-dot"></div>
+                            <div class="marker-content">
+                                <span class="marker-num">08</span>
+                                <span class="marker-title">Audiovisual</span>
+                            </div>
+                        </div>
+                        
+                        <div class="timeline-marker top" data-phase="9">
+                            <div class="marker-dot"></div>
+                            <div class="marker-content">
+                                <span class="marker-num">09</span>
+                                <span class="marker-title">Picos Vendas</span>
+                            </div>
+                        </div>
+                        
+                        <div class="timeline-marker bottom" data-phase="10">
+                            <div class="marker-dot"></div>
+                            <div class="marker-content">
+                                <span class="marker-num">10</span>
+                                <span class="marker-title">Suporte</span>
+                            </div>
+                        </div>
+                        
+                        <div class="timeline-marker top" data-phase="11">
+                            <div class="marker-dot"></div>
+                            <div class="marker-content">
+                                <span class="marker-num">11</span>
+                                <span class="marker-title">Plano Ação</span>
+                            </div>
+                        </div>
+                        
+                        <div class="timeline-marker bottom" data-phase="12">
+                            <div class="marker-dot"></div>
+                            <div class="marker-content">
+                                <span class="marker-num">12</span>
+                                <span class="marker-title">Otimização</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 7. SQUAD - DECK DE CARTAS -->
+        <section class="squad-section">
+            <div class="squad-container">
+                <div class="squad-header">
+                    <h2 class="section-title">SQUAD</h2>
+                    <div class="section-number">[07]</div>
+                </div>
+
+                <div class="squad-intro">
+                    <p>Sua Equipe Dedicada</p>
+                </div>
+
+                <!-- Deck de Cartas -->
+                <div class="card-deck">
+                    <div class="deck-card" data-card="1">
+                        <div class="card-face">
+                            <div class="card-icon">🎯</div>
+                            <h4 class="card-role">Estrategista</h4>
+                            <p class="card-desc">Define direções e alinha objetivos</p>
+                        </div>
+                    </div>
+                    
+                    <div class="deck-card" data-card="2">
+                        <div class="card-face">
+                            <div class="card-icon">📈</div>
+                            <h4 class="card-role">Gestor de Tráfego</h4>
+                            <p class="card-desc">Otimiza campanhas e ROI</p>
+                        </div>
+                    </div>
+                    
+                    <div class="deck-card" data-card="3">
+                        <div class="card-face">
+                            <div class="card-icon">✍️</div>
+                            <h4 class="card-role">Copywriter</h4>
+                            <p class="card-desc">Cria narrativas que convertem</p>
+                        </div>
+                    </div>
+                    
+                    <div class="deck-card" data-card="4">
+                        <div class="card-face">
+                            <div class="card-icon">🎨</div>
+                            <h4 class="card-role">Diretor de Arte</h4>
+                            <p class="card-desc">Identidade visual impactante</p>
+                        </div>
+                    </div>
+                    
+                    <div class="deck-card" data-card="5">
+                        <div class="card-face">
+                            <div class="card-icon">💻</div>
+                            <h4 class="card-role">Programador</h4>
+                            <p class="card-desc">Soluções técnicas impecáveis</p>
+                        </div>
+                    </div>
+                    
+                    <div class="deck-card" data-card="6">
+                        <div class="card-face">
+                            <div class="card-icon">🤝</div>
+                            <h4 class="card-role">Comercial</h4>
+                            <p class="card-desc">Vendas consultivas</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 8. PROPOSTA COMERCIAL (Pricing) -->
         <section class="pricing-section">
             <div class="pricing-container">
                 <div class="pricing-header">
-                    <h2 class="section-title">PROPOSTA COMERCIAL</h2>
-                    <div class="section-number">[05]</div>
+                    <h2 class="section-title">PROPOSTA DE INVESTIMENTO</h2>
+                    <div class="section-number">[08]</div>
                 </div>
                 
                 <p class="pricing-subtitle">
-                    Plano Protagonista<br>
-                    Para quem quer dominar o mercado.
+                    Condição "Valor Protagonista"<br>
+                    Válida para fechamento imediato.
                 </p>
 
                 <div class="pricing-box">
@@ -347,31 +751,40 @@
                     
                     <div class="price-row">
                         <div class="price-info">
-                            <div class="price-name">Gestão Mensal</div>
+                            <div class="price-name">Performance (Gestão Mensal)</div>
                             <div class="price-desc">Tráfego + Copy + Design + Estratégia</div>
                         </div>
-                        <div class="price-value">
-                            <span class="currency">R$</span> 7.000,00 <span class="period">/mês</span>
+                        <div class="price-values">
+                            <div class="price-original">De: R$ 8.000,00</div>
+                            <div class="price-value">
+                                <span class="currency">R$</span> 7.000,00 <span class="period">/mês</span>
+                            </div>
                         </div>
                     </div>
 
                     <div class="price-row">
                         <div class="price-info">
-                            <div class="price-name">Setup Tecnológico</div>
-                            <div class="price-desc">CRM + Automações + IA (único)</div>
+                            <div class="price-name">Setup Tecnológico (Taxa Única)</div>
+                            <div class="price-desc">CRM + Agente de IA + Automações + API Oficial</div>
                         </div>
-                        <div class="price-value">
-                            <span class="currency">R$</span> 14.000,00
+                        <div class="price-values">
+                            <div class="price-original">De: R$ 15.000,00</div>
+                            <div class="price-value">
+                                <span class="currency">R$</span> 14.000,00
+                            </div>
                         </div>
                     </div>
 
                     <div class="price-row">
                         <div class="price-info">
-                            <div class="price-name">Gestão Tech</div>
-                            <div class="price-desc">Manutenção + Otimização contínua</div>
+                            <div class="price-name">Gestão Tech (Mensal)</div>
+                            <div class="price-desc">Manutenção de IA + Otimização de fluxos + Suporte técnico</div>
                         </div>
-                        <div class="price-value">
-                            <span class="currency">R$</span> 5.000,00 <span class="period">/mês</span>
+                        <div class="price-values">
+                            <div class="price-original">De: R$ 6.000,00</div>
+                            <div class="price-value">
+                                <span class="currency">R$</span> 5.000,00 <span class="period">/mês</span>
+                            </div>
                         </div>
                     </div>
                 </div>

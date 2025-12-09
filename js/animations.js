@@ -1,5 +1,5 @@
 // Register GSAP Plugins
-gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
 export function initPreloader() {
     const tl = gsap.timeline();
@@ -433,7 +433,7 @@ function initMenu() {
     // We need to check index.html to see what triggers menu. 
     // In Hero section, we have <div class="nav-links">MENU [+ ]</div>
     
-    const menuTrigger = document.querySelector('.nav-links');
+    const menuTrigger = document.querySelector('.nav-menu-btn');
     const menu = document.querySelector('.fullscreen-menu');
     const closeBtn = document.querySelector('.menu-close-btn');
     const links = document.querySelectorAll('.menu-link');
@@ -458,10 +458,164 @@ function initMenu() {
             });
         });
     }
+
+    // Initialize new sections
+    initCases();
+    initRoadmap();
+    initSquad();
 }
 
+// Cases Section Animations
+function initCases() {
+    const caseCards = document.querySelectorAll('.case-card');
+    
+    caseCards.forEach((card, i) => {
+        gsap.from(card, {
+            scrollTrigger: {
+                trigger: '.cases-section',
+                start: 'top 60%'
+            },
+            y: 60,
+            opacity: 0,
+            duration: 0.8,
+            delay: i * 0.2,
+            ease: 'power3.out'
+        });
+    });
 
+    // Animate case counters
+    const caseCounters = document.querySelectorAll('.case-stat .counter');
+    caseCounters.forEach(counter => {
+        const target = parseInt(counter.dataset.target);
+        const prefix = counter.dataset.prefix || '';
+        const suffix = counter.dataset.suffix || '';
+        
+        let obj = { val: 0 };
+        
+        gsap.to(obj, {
+            val: target,
+            duration: 2,
+            ease: 'power2.out',
+            scrollTrigger: {
+                trigger: counter,
+                start: 'top 85%'
+            },
+            onUpdate: () => {
+                counter.textContent = prefix + Math.round(obj.val) + suffix;
+            }
+        });
+    });
+}
 
+// Roadmap Section - Horizontal Scroll with Pin
+function initRoadmap() {
+    const roadmapSection = document.querySelector('.roadmap-section');
+    const timelineTrack = document.querySelector('.timeline-track');
+    const markers = document.querySelectorAll('.timeline-marker');
+    const lineFill = document.querySelector('.timeline-line-fill');
+    
+    if (!roadmapSection || !timelineTrack || markers.length === 0) return;
 
+    // Calculate total scroll distance (track width - viewport)
+    const getScrollDistance = () => {
+        return timelineTrack.scrollWidth - window.innerWidth + 100;
+    };
 
+    // Pin the section and scroll horizontally
+    gsap.to(timelineTrack, {
+        x: () => -getScrollDistance(),
+        ease: 'none',
+        scrollTrigger: {
+            trigger: roadmapSection,
+            start: 'top top',
+            end: () => `+=${getScrollDistance()}`,
+            pin: true,
+            scrub: 1,
+            invalidateOnRefresh: true,
+            onUpdate: (self) => {
+                // Fill the timeline line as we scroll
+                if (lineFill) {
+                    lineFill.style.width = `${self.progress * 100}%`;
+                }
+            }
+        }
+    });
 
+    // Animate markers appearing
+    markers.forEach((marker, i) => {
+        gsap.from(marker, {
+            opacity: 0,
+            scale: 0.5,
+            duration: 0.5,
+            scrollTrigger: {
+                trigger: marker,
+                containerAnimation: gsap.to(timelineTrack, {
+                    x: () => -getScrollDistance(),
+                    scrollTrigger: {
+                        trigger: roadmapSection,
+                        start: 'top top',
+                        end: () => `+=${getScrollDistance()}`,
+                        scrub: 1
+                    }
+                }),
+                start: 'left 80%',
+                toggleActions: 'play none none reverse'
+            }
+        });
+    });
+}
+
+// Squad Section - Card Shuffle with Pin
+function initSquad() {
+    const squadSection = document.querySelector('.squad-section');
+    const cards = document.querySelectorAll('.deck-card');
+    
+    if (!squadSection || cards.length === 0) return;
+
+    const totalCards = cards.length;
+    const scrollPerCard = 300; // pixels of scroll per card reveal
+    const totalScroll = scrollPerCard * totalCards;
+
+    // Create timeline for card animation
+    const cardTimeline = gsap.timeline({
+        scrollTrigger: {
+            trigger: squadSection,
+            start: 'top top',
+            end: `+=${totalScroll}`,
+            pin: true,
+            scrub: 0.5,
+            invalidateOnRefresh: true
+        }
+    });
+
+    // Animate each card to fan out one by one
+    cards.forEach((card, i) => {
+        const direction = i % 2 === 0 ? -1 : 1; // Alternate left/right
+        const xOffset = (i - Math.floor(totalCards / 2)) * 80;
+        const rotation = (i - Math.floor(totalCards / 2)) * 5;
+        
+        cardTimeline.to(card, {
+            x: xOffset,
+            y: -20 * Math.abs(i - Math.floor(totalCards / 2)),
+            rotateZ: rotation,
+            zIndex: totalCards - Math.abs(i - Math.floor(totalCards / 2)),
+            scale: 1 - Math.abs(i - Math.floor(totalCards / 2)) * 0.02,
+            duration: 1,
+            ease: 'power2.out'
+        }, i * 0.15);
+    });
+
+    // At the end, bring all cards together and highlight current
+    cardTimeline.to(cards, {
+        scale: 0.9,
+        opacity: 0.7,
+        duration: 0.5
+    }, `>-0.3`);
+    
+    cardTimeline.to(cards[0], {
+        scale: 1.1,
+        opacity: 1,
+        zIndex: 10,
+        duration: 0.5
+    }, `<`);
+}
