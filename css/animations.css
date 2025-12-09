@@ -83,75 +83,94 @@
 .chat-simulation {
     position: absolute;
     inset: 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    width: 100%;
+    height: 100%;
     z-index: 10;
     pointer-events: none;
-    perspective: 1000px;
+    overflow: hidden;
+    /* Fade out at the top */
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 30%, black 100%);
+    mask-image: linear-gradient(to bottom, transparent 0%, black 30%, black 100%);
 }
 
 .chat-message {
     position: absolute;
-    padding: 10px 18px;
-    border-radius: 20px;
-    font-size: 11px;
-    font-family: var(--font-mono);
+    bottom: 40px; /* Baseline for entry */
+    padding: 14px 24px;
+    border-radius: 24px;
+    font-size: 15px; /* Larger text */
+    font-weight: 500;
+    font-family: var(--font-primary); /* Cleaner font */
     opacity: 0;
-    white-space: nowrap;
-    width: max-content;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-    backdrop-filter: blur(8px);
-    transition: all 0.3s ease;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+    backdrop-filter: blur(12px);
+    width: fit-content;
+    max-width: 80%;
+    transform-origin: center bottom;
+    animation: chatStack 24s infinite cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .msg-human {
-    background: rgba(255, 255, 255, 0.1);
-    align-self: flex-end; /* Visual context logic handled by offset in animation */
-    /* Instead of flex-alignment self, we might want manual positioning offsets if they stack */
+    background: rgba(255, 255, 255, 0.15);
     border-bottom-right-radius: 4px;
     color: #fff;
-    border: 1px solid rgba(255,255,255,0.2);
-    transform-origin: right center;
-    right: 10%; /* General alignment hint */
+    border: 1px solid rgba(255,255,255,0.25);
+    right: 5%; /* Align right */
 }
 
 .msg-ai {
-    background: rgba(112, 64, 246, 0.25);
-    align-self: flex-start;
+    background: rgba(112, 64, 246, 0.6);
     border-bottom-left-radius: 4px;
-    color: #ceb0fa;
-    border: 1px solid rgba(112, 64, 246, 0.4);
-    transform-origin: left center;
-    left: 10%;
+    color: #fff;
+    border: 1px solid rgba(168, 85, 247, 0.4);
+    left: 5%; /* Align left */
 }
 
-@keyframes chatFloat {
-    0% { opacity: 0; transform: translateY(30px) scale(0.9); display: block; }
-    5% { opacity: 1; transform: translateY(0) scale(1); }
-    25% { opacity: 1; transform: translateY(0) scale(1); } /* Stay visible for a bit */
-    30% { opacity: 0; transform: translateY(-30px) scale(0.95); }
-    100% { opacity: 0; transform: translateY(-30px); }
+/* 
+   Animation Cycle: 24s total (2s per step * 12 messages).
+   Visibile window: ~5 steps (10s).
+   Step Height: ~85px (message height + gap).
+*/
+@keyframes chatStack {
+    /* Entry (0s - 0.5s) */
+    0% { transform: translateY(100px) scale(0.9); opacity: 0; visibility: visible; }
+    2% { transform: translateY(0px) scale(1); opacity: 1; }
+    8.33% { transform: translateY(0px) scale(1); opacity: 1; } /* Wait for next */
+    
+    /* Move to Pos 2 (2s) */
+    10.33% { transform: translateY(-85px); opacity: 1; }
+    16.66% { transform: translateY(-85px); opacity: 1; }
+    
+    /* Move to Pos 3 (4s) */
+    18.66% { transform: translateY(-170px); opacity: 1; }
+    25.00% { transform: translateY(-170px); opacity: 0.9; }
+    
+    /* Move to Pos 4 (6s) */
+    27.00% { transform: translateY(-255px); opacity: 1; }
+    33.33% { transform: translateY(-255px); opacity: 0.8; }
+    
+    /* Move to Pos 5 (8s) */
+    35.33% { transform: translateY(-340px); opacity: 1; }
+    41.66% { transform: translateY(-340px); opacity: 0.5; }
+    
+    /* Exit (10s) */
+    43.66% { transform: translateY(-425px); opacity: 0; }
+    100% { transform: translateY(-425px); opacity: 0; visibility: hidden; }
 }
 
-.chat-message {
-    animation: chatFloat 24s infinite cubic-bezier(0.25, 1, 0.5, 1);
-}
-
-/* Stagger delays - 2s interval */
-.m1 { animation-delay: 0s; right: 20%; top: 40%; }
-.m2 { animation-delay: 2s; left: 20%; top: 45%; }
-.m3 { animation-delay: 4s; left: 22%; top: 50%; }
-.m4 { animation-delay: 6s; right: 22%; top: 35%; }
-.m5 { animation-delay: 8s; left: 18%; top: 42%; }
-.m6 { animation-delay: 10s; left: 20%; top: 48%; }
-.m7 { animation-delay: 12s; right: 15%; top: 52%; }
-.m8 { animation-delay: 14s; left: 25%; top: 38%; }
-.m9 { animation-delay: 16s; right: 25%; top: 44%; }
-.m10 { animation-delay: 18s; left: 15%; top: 55%; }
-.m11 { animation-delay: 20s; right: 30%; top: 30%; }
-.m12 { animation-delay: 22s; left: 30%; top: 60%; } /* Last one */
+/* Stagger delays - 2s interval strictly enforced */
+.m1 { animation-delay: 0s; }
+.m2 { animation-delay: 2s; }
+.m3 { animation-delay: 4s; }
+.m4 { animation-delay: 6s; }
+.m5 { animation-delay: 8s; }
+.m6 { animation-delay: 10s; }
+.m7 { animation-delay: 12s; }
+.m8 { animation-delay: 14s; }
+.m9 { animation-delay: 16s; }
+.m10 { animation-delay: 18s; }
+.m11 { animation-delay: 20s; }
+.m12 { animation-delay: 22s; }
 
 
 /* --- Methodology: Sales / Target Dots --- */
@@ -193,28 +212,34 @@
     inset: 0;
     pointer-events: none;
     overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
 }
 
 .asc-part {
     position: absolute;
-    background: linear-gradient(to top, transparent, var(--accent-color));
-    width: 2px;
-    height: 40px;
+    background: linear-gradient(to top, transparent 0%, var(--accent-color) 40%, #fff 100%);
+    width: 6px;
+    height: 80px;
     opacity: 0;
-    border-radius: 4px;
+    border-radius: 6px;
+    box-shadow: 0 0 20px var(--accent-color), 0 0 40px rgba(112, 64, 246, 0.5);
 }
 
 @keyframes ascend {
-    0% { transform: translateY(120px); opacity: 0; }
-    20% { opacity: 1; }
-    80% { opacity: 1; }
-    100% { transform: translateY(-120px); opacity: 0; }
+    0% { transform: translateY(150px) scaleY(0.5); opacity: 0; }
+    15% { opacity: 1; transform: translateY(100px) scaleY(1); }
+    85% { opacity: 1; }
+    100% { transform: translateY(-180px) scaleY(1.2); opacity: 0; }
 }
 
-.p1 { left: 48%; top: 70%; animation: ascend 2s infinite linear; animation-delay: 0.0s; }
-.p2 { left: 52%; top: 60%; animation: ascend 2.5s infinite linear; animation-delay: 0.8s; height: 60px; width: 3px; opacity: 0.8; }
-.p3 { left: 45%; top: 80%; animation: ascend 3s infinite linear; animation-delay: 1.5s; width: 1px; }
-.p4 { left: 55%; top: 75%; animation: ascend 2.2s infinite linear; animation-delay: 0.4s; }
+.p1 { left: 40%; bottom: 0; animation: ascend 2.2s infinite ease-out; animation-delay: 0.0s; }
+.p2 { left: 50%; bottom: 0; animation: ascend 2.8s infinite ease-out; animation-delay: 0.6s; height: 100px; width: 8px; }
+.p3 { left: 35%; bottom: 0; animation: ascend 2.5s infinite ease-out; animation-delay: 1.2s; width: 4px; height: 60px; }
+.p4 { left: 55%; bottom: 0; animation: ascend 2.3s infinite ease-out; animation-delay: 0.3s; }
+.p5 { left: 60%; bottom: 0; animation: ascend 3s infinite ease-out; animation-delay: 0.9s; height: 120px; width: 10px; }
+.p6 { left: 45%; bottom: 0; animation: ascend 2.6s infinite ease-out; animation-delay: 1.5s; width: 5px; height: 70px; }
 
 
 /* --- Methodology: Inside Sales / Bullet Rain --- */
