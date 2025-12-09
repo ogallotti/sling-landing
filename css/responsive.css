@@ -149,4 +149,49 @@
     .about-text p {
         font-size: 18px;
     }
+    
+    /* Method Section Specifics */
+    .method-panel {
+        padding: 1rem;
+        justify-content: flex-start; /* Start from top */
+    }
+    
+    .service-slide {
+        display: flex; /* Override grid */
+        flex-direction: column;
+        padding: 60px 20px;
+        height: 100%;
+        overflow-y: auto; /* Allow scrolling if content is too long */
+    }
+    
+    .slide-header {
+        margin-bottom: 2rem;
+        flex-direction: row;
+        align-items: center;
+        width: 100%;
+    }
+    
+    .slide-body {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+        height: auto;
+    }
+    
+    .slide-visual {
+        order: -1; /* Move to top */
+        width: 100%;
+        height: 250px; /* Reduced height for mobile */
+        min-height: 250px;
+        margin-bottom: 1rem;
+    }
+    
+    .slide-content {
+        padding-bottom: 40px;
+    }
+    
+    /* Adjust specific visuals for smaller box */
+    .visual-organico { width: 200px; height: 200px; }
+    .bullet-rain-container { transform: scale(0.8); }
+    .ascending-particles { transform: scale(0.8); bottom: -20px; }
 }
