@@ -74,3 +74,233 @@
     95% { clip: rect(86px, 9999px, 94px, 0); transform: skew(0.79deg); }
     100% { clip: rect(65px, 9999px, 79px, 0); transform: skew(0.34deg); }
 }
+
+/* =========================================
+   CUSTOM ANIMATIONS FOR SLING FRAMEWORK
+   ========================================= */
+
+/* --- AI Chat Simulation (Iara) --- */
+.chat-simulation {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+    pointer-events: none;
+    perspective: 1000px;
+}
+
+.chat-message {
+    position: absolute;
+    padding: 10px 18px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-family: var(--font-mono);
+    opacity: 0;
+    white-space: nowrap;
+    width: max-content;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    backdrop-filter: blur(8px);
+    transition: all 0.3s ease;
+}
+
+.msg-human {
+    background: rgba(255, 255, 255, 0.1);
+    align-self: flex-end; /* Visual context logic handled by offset in animation */
+    /* Instead of flex-alignment self, we might want manual positioning offsets if they stack */
+    border-bottom-right-radius: 4px;
+    color: #fff;
+    border: 1px solid rgba(255,255,255,0.2);
+    transform-origin: right center;
+    right: 10%; /* General alignment hint */
+}
+
+.msg-ai {
+    background: rgba(112, 64, 246, 0.25);
+    align-self: flex-start;
+    border-bottom-left-radius: 4px;
+    color: #ceb0fa;
+    border: 1px solid rgba(112, 64, 246, 0.4);
+    transform-origin: left center;
+    left: 10%;
+}
+
+@keyframes chatFloat {
+    0% { opacity: 0; transform: translateY(30px) scale(0.9); display: block; }
+    5% { opacity: 1; transform: translateY(0) scale(1); }
+    25% { opacity: 1; transform: translateY(0) scale(1); } /* Stay visible for a bit */
+    30% { opacity: 0; transform: translateY(-30px) scale(0.95); }
+    100% { opacity: 0; transform: translateY(-30px); }
+}
+
+.chat-message {
+    animation: chatFloat 24s infinite cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* Stagger delays - 2s interval */
+.m1 { animation-delay: 0s; right: 20%; top: 40%; }
+.m2 { animation-delay: 2s; left: 20%; top: 45%; }
+.m3 { animation-delay: 4s; left: 22%; top: 50%; }
+.m4 { animation-delay: 6s; right: 22%; top: 35%; }
+.m5 { animation-delay: 8s; left: 18%; top: 42%; }
+.m6 { animation-delay: 10s; left: 20%; top: 48%; }
+.m7 { animation-delay: 12s; right: 15%; top: 52%; }
+.m8 { animation-delay: 14s; left: 25%; top: 38%; }
+.m9 { animation-delay: 16s; right: 25%; top: 44%; }
+.m10 { animation-delay: 18s; left: 15%; top: 55%; }
+.m11 { animation-delay: 20s; right: 30%; top: 30%; }
+.m12 { animation-delay: 22s; left: 30%; top: 60%; } /* Last one */
+
+
+/* --- Methodology: Sales / Target Dots --- */
+.target-dots-container {
+    position: absolute;
+    inset: 0;
+}
+
+.target-dot {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background: #fff;
+    border-radius: 50%;
+    opacity: 0;
+    box-shadow: 0 0 10px #fff;
+    animation: dotPop 2.5s infinite ease-in-out;
+}
+
+@keyframes dotPop {
+    0% { transform: scale(0); opacity: 0; }
+    30% { opacity: 1; transform: scale(1.2); }
+    50% { opacity: 1; transform: scale(1); }
+    80% { opacity: 0; transform: scale(0); }
+    100% { opacity: 0; }
+}
+
+.d1 { top: 25%; left: 35%; animation-delay: 0.2s; }
+.d2 { top: 65%; left: 25%; animation-delay: 0.7s; background: var(--accent-color); box-shadow: 0 0 10px var(--accent-color); width: 8px; height: 8px; }
+.d3 { top: 35%; left: 75%; animation-delay: 1.3s; }
+.d4 { top: 75%; left: 65%; animation-delay: 1.8s; background: var(--accent-color); box-shadow: 0 0 10px var(--accent-color); }
+.d5 { top: 15%; left: 60%; animation-delay: 2.1s; }
+.d6 { top: 50%; left: 50%; animation-delay: 0s; width: 12px; height: 12px; border: 2px solid var(--accent-color); background: transparent; } 
+
+
+/* --- Methodology: Launch / Ascend --- */
+.ascending-particles {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.asc-part {
+    position: absolute;
+    background: linear-gradient(to top, transparent, var(--accent-color));
+    width: 2px;
+    height: 40px;
+    opacity: 0;
+    border-radius: 4px;
+}
+
+@keyframes ascend {
+    0% { transform: translateY(120px); opacity: 0; }
+    20% { opacity: 1; }
+    80% { opacity: 1; }
+    100% { transform: translateY(-120px); opacity: 0; }
+}
+
+.p1 { left: 48%; top: 70%; animation: ascend 2s infinite linear; animation-delay: 0.0s; }
+.p2 { left: 52%; top: 60%; animation: ascend 2.5s infinite linear; animation-delay: 0.8s; height: 60px; width: 3px; opacity: 0.8; }
+.p3 { left: 45%; top: 80%; animation: ascend 3s infinite linear; animation-delay: 1.5s; width: 1px; }
+.p4 { left: 55%; top: 75%; animation: ascend 2.2s infinite linear; animation-delay: 0.4s; }
+
+
+/* --- Methodology: Inside Sales / Bullet Rain --- */
+.bullet-rain-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 30px;
+    overflow: hidden;
+    position: relative;
+    padding: 20px 0;
+}
+
+.bullet-row {
+    display: flex;
+    gap: 40px;
+    position: relative;
+    width: 150%; /* Make it wide enough to scroll */
+    left: -20%; 
+}
+
+.bullet-item {
+    width: 60px;
+    height: 12px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 10px;
+    box-shadow: 0 0 5px rgba(255,255,255,0.05);
+}
+
+@keyframes bulletRain {
+    0% { transform: translateX(-100%) scaleX(0.5); opacity: 0; }
+    10% { opacity: 1; transform: translateX(0) scaleX(1); }
+    90% { opacity: 1; transform: translateX(100%) scaleX(1); }
+    100% { transform: translateX(200%) scaleX(0.5); opacity: 0; }
+}
+
+.r1 .bullet-item { animation: bulletRain 2.5s infinite linear; }
+.r2 .bullet-item { animation: bulletRain 3s infinite linear; background: linear-gradient(90deg, transparent, var(--accent-color)); width: 80px; }
+.r3 .bullet-item { animation: bulletRain 2.8s infinite linear; }
+
+/* Offsets */
+.r1 { margin-left: 0; }
+.r2 { margin-left: -50px; }
+.r3 { margin-left: 20px; }
+
+/* Item stagger */
+.r1 .bullet-item:nth-child(1) { animation-delay: 0s; }
+.r1 .bullet-item:nth-child(2) { animation-delay: 1.2s; }
+.r1 .bullet-item:nth-child(3) { animation-delay: 2.0s; }
+
+.r2 .bullet-item:nth-child(1) { animation-delay: 0.5s; }
+.r2 .bullet-item:nth-child(2) { animation-delay: 1.8s; }
+
+.r3 .bullet-item:nth-child(1) { animation-delay: 0.2s; }
+.r3 .bullet-item:nth-child(2) { animation-delay: 1.5s; }
+.r3 .bullet-item:nth-child(3) { animation-delay: 2.4s; }
+
+
+/* --- Methodology: Organic / Waves --- */
+.organic-node {
+    /* position: absolute is defined in style.css, we just add z-index */
+    z-index: 2;
+}
+
+.organic-node::after {
+    content: '';
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%; height: 100%;
+    border: 1px solid var(--accent-color);
+    border-radius: 50%;
+    opacity: 0;
+    animation: ripple 2.5s infinite ease-out;
+    z-index: -1;
+}
+
+@keyframes ripple {
+    0% { width: 100%; height: 100%; opacity: 0.6; border-width: 2px; }
+    100% { width: 400%; height: 400%; opacity: 0; border-width: 0px; }
+}
+
+.organic-node.center::after { animation-delay: 0s; border-color: rgba(255,255,255,0.5); }
+.organic-node.n1::after { animation-delay: 0.5s; }
+.organic-node.n2::after { animation-delay: 1.0s; }
+.organic-node.n3::after { animation-delay: 1.5s; }
+.organic-node.n4::after { animation-delay: 2.0s; }

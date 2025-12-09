@@ -90,10 +90,10 @@ function initHero() {
         });
     }
 
-    // Initialize all sections
+    // Initialize all sections - ORDER MUST MATCH DOM ORDER for ScrollTrigger pins
     initAbout();
-    initMethod();
-    initCases();
+    initCases();   // Cases comes BEFORE Method in the HTML
+    initMethod();  // Method comes AFTER Cases in the HTML
     initRoadmap();
     initSquad();
     initIara();
@@ -189,7 +189,8 @@ function initMethod() {
             pin: true,
             scrub: 0.5,
             start: "top top",
-            end: "+=5000", // Long scroll for correct feel
+            end: "+=5000",
+            anticipatePin: 1,
             invalidateOnRefresh: true,
             onUpdate: (self) => {
                 // Update dots based on progress
@@ -224,7 +225,8 @@ function initCases() {
             pin: true,
             scrub: 0.5,
             start: "top top",
-            end: "+=4000", // Longer scroll duration prevents jumping
+            end: "+=4000",
+            anticipatePin: 1,
             invalidateOnRefresh: true,
             onUpdate: (self) => {
                 // Animate counters when we scroll past intro slide
