@@ -12,7 +12,7 @@ export function initPreloader() {
     document.body.classList.add('loading');
 
     let progress = { value: 0 };
-    let loadDuration = 3.5; // Slightly longer for dramatic effect
+    let loadDuration = 3.5;
 
     // Easter egg click handler
     let clickCount = 0;
@@ -49,14 +49,13 @@ export function initPreloader() {
         ease: 'power4.inOut',
         onComplete: () => {
             document.body.classList.remove('loading');
-            document.body.style.overflow = ''; // Enable scroll
-            initHero(); // Start Hero animations ONLY after loader
+            document.body.style.overflow = '';
+            initHero();
         }
     });
 }
 
 function initHero() {
-    // 1. Headlines Reveal
     const headline = document.querySelector('.hero-headline');
     if (headline) {
         const split = new SplitType('.hero-headline', { types: 'chars' });
@@ -71,7 +70,6 @@ function initHero() {
         });
     }
 
-    // 2. Subheadline & CTA Reveal
     gsap.from('.hero-subheadline, .cta-hero, .hero-scroll-indicator', {
         y: 30,
         opacity: 0,
@@ -81,7 +79,6 @@ function initHero() {
         ease: 'power3.out'
     });
 
-    // 3. Reveal Block Effect
     const revealBlock = document.querySelector('.reveal-block');
     if (revealBlock) {
         gsap.set('.reveal-text', { opacity: 1 });
@@ -93,8 +90,7 @@ function initHero() {
         });
     }
 
-    // Initialize subsequent sections
-    // Note: ScrollTriggers will wait for user to scroll
+    // Initialize all sections
     initAbout();
     initMethod();
     initCases();
@@ -106,7 +102,7 @@ function initHero() {
 }
 
 function initAbout() {
-    gsap.from('.section-title', {
+    gsap.from('.about-section .section-title', {
         scrollTrigger: {
             trigger: '.about-section',
             start: 'top 70%'
@@ -131,7 +127,7 @@ function initAbout() {
     });
 
     // Counters
-    const counters = document.querySelectorAll('.counter');
+    const counters = document.querySelectorAll('.about-section .counter');
     counters.forEach(counter => {
         const targetValue = parseInt(counter.getAttribute('data-target'));
         const isMoney = targetValue >= 1000000;
@@ -170,219 +166,270 @@ function initAbout() {
     });
 }
 
-// METHODOLOGY SECTION - HORIZONTAL SLIDER
+// METHODOLOGY - HORIZONTAL SLIDER (FIXED)
 function initMethod() {
     const section = document.querySelector('.method-section');
     const slider = document.querySelector('.method-slider');
     const slides = document.querySelectorAll('.method-slide');
+    const dots = document.querySelectorAll('.method-dots .dot');
     
     if (!section || !slider || slides.length === 0) return;
     
-    // Total move distance: (numSlides - 1) * 100vw
-    const totalMove = (slides.length - 1) * 100; 
+    // Calculate the exact scroll distance needed
+    const getScrollAmount = () => {
+        return slider.scrollWidth - window.innerWidth;
+    };
 
-    const tl = gsap.timeline({
+    // Create the horizontal scroll animation
+    gsap.to(slider, {
+        x: () => -getScrollAmount(),
+        ease: "none",
         scrollTrigger: {
             trigger: section,
             pin: true,
-            scrub: 1,
+            scrub: 0.5,
             start: "top top",
-            end: "+=3000", // Adjust length of scroll
-            invalidateOnRefresh: true
-        }
-    });
-
-    // Move slider horizontally
-    tl.to(slider, {
-        xPercent: -((slides.length - 1) * 100) / slides.length, // Logic for flex container
-        // Actually, since width is 700vw (7 slides), moving to end means moving -600vw visually?
-        // Simpler: xPercent: -100 * (slides.length - 1) / slides.length
-        // Let's use x: () => -(slider.scrollWidth - window.innerWidth)
-        x: () => -(slider.scrollWidth - window.innerWidth),
-        ease: "none"
-    });
-
-    // Sync dots
-    const dots = document.querySelectorAll('.method-dots .dot');
-    dots.forEach((dot, i) => {
-        // Highlight logic
-        // We want dot i to be active when slide i is in view
-        // Slide i is in view when progress is roughly i / (total - 1)
-        if (i === 0) return; // First one active start
-        
-        tl.call(() => {
-            dots.forEach(d => d.classList.remove('active'));
-            dots[i].classList.add('active');
-        }, null, i / (slides.length - 1) * tl.duration()); // approximate timing
-        
-        // This call approach in scrub timeline is tricky. simpler to use checking onUpdate.
-    });
-
-    // Re-do dots using onUpdate in ScrollTrigger is smoother
-    ScrollTrigger.create({
-        trigger: section,
-        start: 'top top',
-        end: '+=3000',
-        scrub: true,
-        onUpdate: (self) => {
-            const index = Math.round(self.progress * (slides.length - 1));
-            dots.forEach((d, i) => d.classList.toggle('active', i === index));
+            end: () => `+=${getScrollAmount()}`,
+            invalidateOnRefresh: true,
+            onUpdate: (self) => {
+                // Update dots based on progress
+                const index = Math.round(self.progress * (slides.length - 1));
+                dots.forEach((d, i) => d.classList.toggle('active', i === index));
+            }
         }
     });
 }
 
-// CASES SECTION
+// CASES - STACKING CARDS EFFECT
 function initCases() {
+    const section = document.querySelector('.cases-section');
     const cards = document.querySelectorAll('.case-card');
+    
+    if (!section || cards.length === 0) return;
+
+    // Stacking animation as you scroll
     cards.forEach((card, i) => {
         gsap.from(card, {
             scrollTrigger: {
-                trigger: '.cases-section',
-                start: 'top 60%'
+                trigger: section,
+                start: `top+=${i * 100} 70%`,
+                end: `top+=${i * 100 + 200} 30%`,
+                scrub: 1
             },
-            y: 50,
+            y: 100 + (i * 50),
             opacity: 0,
-            duration: 0.8,
-            delay: i * 0.2,
+            scale: 0.9,
+            rotation: (i % 2 === 0 ? -5 : 5),
+            duration: 1,
             ease: 'power3.out'
         });
     });
 }
 
-// ROADMAP SECTION - FIXED LOGIC
+// ROADMAP - HORIZONTAL TIMELINE (FIXED)
 function initRoadmap() {
     const section = document.querySelector('.roadmap-section');
     const track = document.querySelector('.timeline-track');
     const fillLine = document.querySelector('.timeline-line-fill');
     const markers = document.querySelectorAll('.timeline-marker');
 
-    if (!section || !track) return;
+    if (!section || !track || markers.length === 0) return;
 
-    // Reset markers initial state
-    gsap.set(markers, { opacity: 0, scale: 0.5, y: 20 });
+    // Make markers visible from start
+    gsap.set(markers, { opacity: 1, scale: 1, y: 0 });
     gsap.set(fillLine, { width: '0%' });
 
-    const scrollDistance = () => track.scrollWidth - window.innerWidth + 200; // Extra buffer
+    const getScrollDistance = () => {
+        const trackWidth = track.scrollWidth;
+        const viewportWidth = window.innerWidth;
+        return Math.max(trackWidth - viewportWidth, 1000);
+    };
 
+    // Create timeline
     const tl = gsap.timeline({
         scrollTrigger: {
             trigger: section,
             pin: true,
-            scrub: 1,
+            scrub: 0.8,
             start: "top top",
-            end: () => `+=${scrollDistance()}`,
+            end: () => `+=${getScrollDistance()}`,
             invalidateOnRefresh: true
         }
     });
 
-    // 1. Move Track Left
+    // Move track horizontally
     tl.to(track, {
-        x: () => -scrollDistance(),
+        x: () => -(track.scrollWidth - window.innerWidth + 100),
         ease: "none",
-        duration: 10
-    });
+        duration: 1
+    }, 0);
 
-    // 2. Fill Line (runs concurrent with track movement)
+    // Fill line progressively
     tl.to(fillLine, {
         width: '100%',
         ease: "none",
-        duration: 10
+        duration: 1
     }, 0);
 
-    // 3. Reveal Markers Sequentially
-    // Divide duration (10) by number of markers
-    const step = 9.5 / markers.length; 
-    
+    // Animate markers with slight bounce as they come into view
     markers.forEach((marker, i) => {
-        tl.to(marker, {
-            opacity: 1,
-            scale: 1,
-            y: 0,
-            duration: 0.5,
-            ease: "back.out(1.7)"
-        }, i * step + 0.5); // Start slightly after
+        const progress = i / (markers.length - 1);
+        tl.fromTo(marker, 
+            { scale: 0.8 },
+            { scale: 1.1, duration: 0.05, ease: "back.out(2)" },
+            progress * 0.8
+        ).to(marker, 
+            { scale: 1, duration: 0.05 },
+            progress * 0.8 + 0.05
+        );
     });
 }
 
-// SQUAD SECTION - CARD DECK LOGIC (ONE BY ONE)
+// SQUAD - CARD DECK CYCLING (FIXED)
 function initSquad() {
     const section = document.querySelector('.squad-section');
+    const deck = document.querySelector('.card-deck');
     const cards = document.querySelectorAll('.deck-card');
 
-    if (!section || cards.length === 0) return;
+    if (!section || !deck || cards.length === 0) return;
 
-    // CSS reset: ensure all cards are stacked absolute
-    // (Should be in CSS, but confirming logic here)
-    
-    // Reverse z-index so first element is top
-    cards.forEach((card, i) => {
-        card.style.zIndex = cards.length - i;
-        // Initial tiny rotation for messiness
-        gsap.set(card, { rotation: (Math.random() * 4 - 2) }); 
-    });
-
-    const scrollDuration = 3000;
+    const scrollDuration = cards.length * 600;
 
     const tl = gsap.timeline({
         scrollTrigger: {
             trigger: section,
             pin: true,
-            scrub: 1,
+            scrub: 0.5,
             start: "top top",
             end: `+=${scrollDuration}`,
             invalidateOnRefresh: true
         }
     });
 
-    // Animate cards flying away one by one, revealing the next
-    // Except the last one
+    // Cycle cards: top card goes left, then moves to back of deck
     cards.forEach((card, i) => {
-        if (i === cards.length - 1) return; // Keep last card
+        if (i === cards.length - 1) return; // Last card stays
 
+        const nextCard = cards[i + 1];
+        
+        // Card flies left
         tl.to(card, {
-            x: -window.innerWidth, // Fly left out of screen
-            rotation: -45,
-            opacity: 0,
-            duration: 1,
+            x: -350,
+            rotation: -25,
+            duration: 0.5,
             ease: "power2.in"
         });
         
-        // Optional: scale up the next card slightly to show focus
-        if (cards[i+1]) {
-            tl.fromTo(cards[i+1], 
-                { scale: 0.95, filter: 'brightness(0.5)' },
-                { scale: 1, filter: 'brightness(1)', duration: 0.5 },
-                "<+=0.5" // Start halfway through previous card exit
-            );
+        // Card moves to back (right side, behind deck)
+        tl.to(card, {
+            x: 30,
+            y: -60,
+            rotation: 3,
+            zIndex: 0,
+            scale: 0.92,
+            duration: 0.3,
+            ease: "power2.out"
+        });
+        
+        // Next card scales up and centers
+        if (nextCard) {
+            tl.to(nextCard, {
+                scale: 1,
+                x: 0,
+                y: 0,
+                rotation: 0,
+                zIndex: 10,
+                duration: 0.3,
+                ease: "power2.out"
+            }, "<");
         }
     });
 }
 
+// IARA SECTION (FIXED)
 function initIara() {
-    // Basic reveal
-    gsap.from('.iara-content', {
+    const section = document.querySelector('.iara-section');
+    if (!section) return;
+
+    // Animate visual orb
+    gsap.from('.ai-orb', {
         scrollTrigger: {
-            trigger: '.iara-section',
+            trigger: section,
             start: 'top 60%'
         },
-        y: 50, opacity: 0, duration: 1
+        scale: 0.5,
+        opacity: 0,
+        duration: 1,
+        ease: 'back.out(1.7)'
+    });
+
+    // Animate content
+    gsap.from('.iara-content', {
+        scrollTrigger: {
+            trigger: section,
+            start: 'top 50%'
+        },
+        x: 50,
+        opacity: 0,
+        duration: 1,
+        ease: 'power3.out'
+    });
+
+    // Animate list items
+    gsap.from('.iara-list li', {
+        scrollTrigger: {
+            trigger: '.iara-list',
+            start: 'top 70%'
+        },
+        y: 20,
+        opacity: 0,
+        stagger: 0.1,
+        duration: 0.6,
+        ease: 'power3.out'
+    });
+
+    // Animate stats
+    gsap.from('.stat-inline', {
+        scrollTrigger: {
+            trigger: '.iara-stats-inline',
+            start: 'top 80%'
+        },
+        y: 20,
+        opacity: 0,
+        stagger: 0.15,
+        duration: 0.6,
+        ease: 'power3.out'
     });
 }
 
 function initPricing() {
-    gsap.from('.pricing-card', {
+    const section = document.querySelector('.pricing-section');
+    if (!section) return;
+
+    gsap.from('.pricing-box', {
         scrollTrigger: {
-            trigger: '.pricing-section',
+            trigger: section,
             start: 'top 70%'
         },
-        y: 50, opacity: 0, stagger: 0.2, duration: 1
+        y: 50,
+        opacity: 0,
+        duration: 1,
+        ease: 'power3.out'
+    });
+
+    gsap.from('.price-row', {
+        scrollTrigger: {
+            trigger: '.pricing-box',
+            start: 'top 60%'
+        },
+        x: -30,
+        opacity: 0,
+        stagger: 0.2,
+        duration: 0.8,
+        ease: 'power3.out'
     });
 }
 
 function initFooter() {
-    // Simple footer
-}
-
-function initMenu() {
-    const menuBtn = document.querySelector('.nav-links'); // Simplification
+    // Footer animations if needed
 }
