@@ -262,208 +262,185 @@
             </div>
         </section>
 
-        <!-- 4. METODOLOGIA - 6 PILARES (Horizontal Scroll) -->
+        <!-- 4. METODOLOGIA - 6 PILARES (FULL SLIDER) -->
         <section class="method-section">
-            <div class="method-progress-bar">
-                <div class="method-progress-fill"></div>
-            </div>
-            
-            <div class="method-content">
-                
-                <!-- SCREEN 1: Intro -->
-                <div class="method-panel intro-panel">
-                    <h2 class="section-title">METODOLOGIA</h2>
-                    <div class="method-intro-divider"></div>
-                    <p class="method-intro-text">
-                        Seis pilares<br>
-                        para dominar<br>
-                        o mercado digital.
-                    </p>
-                    <div class="drag-indicator">
-                        [→ SCROLL]
+            <div class="method-container">
+                <!-- Slider Track - GSAP will translate this horizontally -->
+                <div class="method-slider">
+                    
+                    <!-- SLIDE 01: Esteira de Produtos -->
+                    <div class="method-slide">
+                        <div class="slide-visual">
+                            <div class="visual-anim visual-esteira">
+                                <div class="gear gear-1"></div>
+                                <div class="gear gear-2"></div>
+                                <div class="gear gear-3"></div>
+                            </div>
+                        </div>
+                        <div class="slide-content">
+                            <div class="slide-header">
+                                <span class="slide-num">01 ////</span>
+                                <h3 class="slide-title">ESTEIRA DE PRODUTOS</h3>
+                            </div>
+                            <p class="slide-desc">
+                                Entregamos um plano completo de funis, do "Front-end" ao "Back-end", aumentando o LTV (Lifetime Value) do cliente.
+                            </p>
+                            <ul class="slide-list">
+                                <li>Funil de Entrada</li>
+                                <li>Ticket Médio Elevado</li>
+                                <li>Maximização de LTV</li>
+                            </ul>
+                        </div>
                     </div>
-                </div>
 
-                <!-- PILAR 01: Esteira de Produtos -->
-                <div class="method-panel card-panel full-slide">
-                    <article class="service-slide">
-                        <div class="slide-header">
-                            <span class="slide-index">01 ////</span>
-                            <h3 class="slide-title">ESTEIRA DE PRODUTOS</h3>
-                        </div>
-                        <div class="slide-body">
-                            <div class="slide-visual visual-esteira">
-                                <div class="funnel-stage">$</div>
-                                <div class="funnel-stage">$$</div>
-                                <div class="funnel-stage">$$$</div>
-                                <div class="funnel-arrow">→</div>
-                            </div>
-                            <div class="slide-info">
-                                <p class="slide-description">
-                                    A base de tudo. Uma sequência lógica de produtos onde haja recompra e desenvolvimento do LTV (Lifetime Value) do cliente.
-                                </p>
-                                <ul class="slide-features">
-                                    <li>Produto de Entrada</li>
-                                    <li>Produto Core</li>
-                                    <li>High Ticket</li>
-                                </ul>
+                    <!-- SLIDE 02: Performance (Tráfego) -->
+                    <div class="method-slide">
+                        <div class="slide-visual">
+                            <div class="visual-anim visual-performance">
+                                <div class="chart-bar bar-1"></div>
+                                <div class="chart-bar bar-2"></div>
+                                <div class="chart-bar bar-3"></div>
+                                <div class="chart-bar bar-4"></div>
+                                <div class="chart-bar bar-5"></div>
                             </div>
                         </div>
-                    </article>
-                </div>
-
-                <!-- PILAR 02: Perpétuo -->
-                <div class="method-panel card-panel full-slide">
-                    <article class="service-slide">
-                        <div class="slide-header">
-                            <span class="slide-index">02 ////</span>
-                            <h3 class="slide-title">PERPÉTUO</h3>
+                        <div class="slide-content">
+                            <div class="slide-header">
+                                <span class="slide-num">02 ////</span>
+                                <h3 class="slide-title">PERFORMANCE</h3>
+                            </div>
+                            <p class="slide-desc">
+                                Gestão de tráfego com foco em ROI. Cada centavo investido é rastreado, otimizado e multiplicado.
+                            </p>
+                            <ul class="slide-list">
+                                <li>Meta Ads & Google Ads</li>
+                                <li>Tracking Avançado</li>
+                                <li>Dashboards em Tempo Real</li>
+                            </ul>
                         </div>
-                        <div class="slide-body">
-                            <div class="slide-visual visual-perpetuo">
-                                <div class="calendar-grid">
-                                    <span class="day active">$</span><span class="day active">$</span><span class="day active">$</span><span class="day active">$</span><span class="day active">$</span>
-                                    <span class="day active">$</span><span class="day active">$</span>
+                    </div>
+
+                    <!-- SLIDE 03: Ações de Vendas -->
+                    <div class="method-slide">
+                        <div class="slide-visual">
+                            <div class="visual-anim visual-acoes">
+                                <div class="target-circle c1"></div>
+                                <div class="target-circle c2"></div>
+                                <div class="target-circle c3"></div>
+                                <div class="target-icon">🎯</div>
+                            </div>
+                        </div>
+                        <div class="slide-content">
+                            <div class="slide-header">
+                                <span class="slide-num">03 ////</span>
+                                <h3 class="slide-title">AÇÕES DE VENDAS</h3>
+                            </div>
+                            <p class="slide-desc">
+                                Estratégias de curto prazo para gerar caixa rápido, movimentar a base de leads e testar novas ofertas.
+                            </p>
+                            <ul class="slide-list">
+                                <li>Campanhas Relâmpago</li>
+                                <li>Ofertas Exclusivas</li>
+                                <li>Ativação de Base</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- SLIDE 04: Lançamento -->
+                    <div class="method-slide">
+                        <div class="slide-visual">
+                            <div class="visual-anim visual-lancamento">
+                                <div class="launch-curve">
+                                    <svg viewBox="0 0 100 100" class="curve-svg">
+                                        <path d="M10,90 Q40,80 50,50 T90,10" fill="none" class="curve-path" />
+                                    </svg>
+                                    <div class="rocket-particle">🚀</div>
                                 </div>
                             </div>
-                            <div class="slide-info">
-                                <p class="slide-description">
-                                    Não acreditamos apenas em modelos sazonais. Seu negócio deve vender todos os dias. O perpétuo garante fluxo de caixa constante.
-                                </p>
-                                <ul class="slide-features">
-                                    <li>Vendas Diárias</li>
-                                    <li>Fluxo de Caixa Estável</li>
-                                    <li>Previsibilidade</li>
-                                </ul>
+                        </div>
+                        <div class="slide-content">
+                            <div class="slide-header">
+                                <span class="slide-num">04 ////</span>
+                                <h3 class="slide-title">LANÇAMENTO</h3>
+                            </div>
+                            <p class="slide-desc">
+                                Utilizado de forma sazonal e periódica. É o momento de pico de faturamento com uma oferta extraordinária.
+                            </p>
+                            <ul class="slide-list">
+                                <li>Picos de Faturamento</li>
+                                <li>Ofertas Irresistíveis</li>
+                                <li>Eventos Ao Vivo</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- SLIDE 05: Inside Sales -->
+                    <div class="method-slide">
+                        <div class="slide-visual">
+                            <div class="visual-anim visual-sales">
+                                <div class="chat-row left"><div class="bubble"></div></div>
+                                <div class="chat-row right"><div class="bubble"></div></div>
+                                <div class="chat-row left"><div class="bubble"></div></div>
                             </div>
                         </div>
-                    </article>
+                        <div class="slide-content">
+                            <div class="slide-header">
+                                <span class="slide-num">05 ////</span>
+                                <h3 class="slide-title">INSIDE SALES</h3>
+                            </div>
+                            <p class="slide-desc">
+                                Vendas não acontecem apenas no automático. Estimuladas através de técnicas 1 a 1 e recuperação ativa.
+                            </p>
+                            <ul class="slide-list">
+                                <li>Venda Consultiva</li>
+                                <li>Recuperação de Leads</li>
+                                <li>Atendimento Humanizado</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- SLIDE 06: Ações Orgânicas -->
+                    <div class="method-slide">
+                        <div class="slide-visual">
+                            <div class="visual-anim visual-organico">
+                                <div class="organic-node center"></div>
+                                <div class="organic-node n1"></div>
+                                <div class="organic-node n2"></div>
+                                <div class="organic-node n3"></div>
+                                <div class="organic-node n4"></div>
+                                <div class="organic-conn c1"></div>
+                                <div class="organic-conn c2"></div>
+                                <div class="organic-conn c3"></div>
+                                <div class="organic-conn c4"></div>
+                            </div>
+                        </div>
+                        <div class="slide-content">
+                            <div class="slide-header">
+                                <span class="slide-num">06 ////</span>
+                                <h3 class="slide-title">ORGÂNICO</h3>
+                            </div>
+                            <p class="slide-desc">
+                                Imprescindíveis para diminuir o custo de tráfego a longo prazo e aumentar a autoridade da marca.
+                            </p>
+                            <ul class="slide-list">
+                                <li>Branding Consistente</li>
+                                <li>Conteúdo de Valor</li>
+                                <li>Autoridade no Mercado</li>
+                            </ul>
+                        </div>
+                    </div>
+
                 </div>
 
-                <!-- PILAR 03: Ações de Vendas -->
-                <div class="method-panel card-panel full-slide">
-                    <article class="service-slide">
-                        <div class="slide-header">
-                            <span class="slide-index">03 ////</span>
-                            <h3 class="slide-title">AÇÕES DE VENDAS</h3>
-                        </div>
-                        <div class="slide-body">
-                            <div class="slide-visual visual-acoes">
-                                <div class="pulse-ring"></div>
-                                <div class="pulse-ring delay-1"></div>
-                                <div class="pulse-ring delay-2"></div>
-                                <div class="pulse-center">🎯</div>
-                            </div>
-                            <div class="slide-info">
-                                <p class="slide-description">
-                                    O perpétuo não roda sozinho. Para ter vendas todos os meses, é preciso movimento, tráfego intencional e campanhas ativas.
-                                </p>
-                                <ul class="slide-features">
-                                    <li>Campanhas Mensais</li>
-                                    <li>Tráfego Intencional</li>
-                                    <li>Promoções Estratégicas</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </article>
+                <!-- Navigation Dots -->
+                <div class="method-dots">
+                    <div class="dot active"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
                 </div>
-
-                <!-- PILAR 04: Lançamentos -->
-                <div class="method-panel card-panel full-slide">
-                    <article class="service-slide">
-                        <div class="slide-header">
-                            <span class="slide-index">04 ////</span>
-                            <h3 class="slide-title">LANÇAMENTOS</h3>
-                        </div>
-                        <div class="slide-body">
-                            <div class="slide-visual visual-lancamento">
-                                <div class="rocket">🚀</div>
-                                <div class="rocket-trail"></div>
-                            </div>
-                            <div class="slide-info">
-                                <p class="slide-description">
-                                    Utilizado de forma sazonal e periódica. É o momento de pico de faturamento com uma oferta extraordinária e irresistível.
-                                </p>
-                                <ul class="slide-features">
-                                    <li>Picos de Faturamento</li>
-                                    <li>Ofertas Irresistíveis</li>
-                                    <li>Eventos Ao Vivo</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </article>
-                </div>
-
-                <!-- PILAR 05: Inside Sales -->
-                <div class="method-panel card-panel full-slide">
-                    <article class="service-slide">
-                        <div class="slide-header">
-                            <span class="slide-index">05 ////</span>
-                            <h3 class="slide-title">INSIDE SALES</h3>
-                        </div>
-                        <div class="slide-body">
-                            <div class="slide-visual visual-sales">
-                                <div class="phone-icon">📞</div>
-                                <div class="chat-bubbles">
-                                    <span class="bubble">💬</span>
-                                    <span class="bubble">💬</span>
-                                    <span class="bubble">💬</span>
-                                </div>
-                            </div>
-                            <div class="slide-info">
-                                <p class="slide-description">
-                                    Vendas não acontecem apenas no automático. Elas precisam ser estimuladas através de técnicas de venda 1 a 1 e recuperação ativa.
-                                </p>
-                                <ul class="slide-features">
-                                    <li>Venda Consultiva</li>
-                                    <li>Recuperação de Leads</li>
-                                    <li>Atendimento Humanizado</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </article>
-                </div>
-
-                <!-- PILAR 06: Ações Orgânicas -->
-                <div class="method-panel card-panel full-slide">
-                    <article class="service-slide">
-                        <div class="slide-header">
-                            <span class="slide-index">06 ////</span>
-                            <h3 class="slide-title">AÇÕES ORGÂNICAS</h3>
-                        </div>
-                        <div class="slide-body">
-                            <div class="slide-visual visual-organico">
-                                <div class="social-icons">
-                                    <span class="social-icon">📱</span>
-                                    <span class="social-icon">📸</span>
-                                    <span class="social-icon">🎬</span>
-                                </div>
-                                <div class="heart-pulse">❤️</div>
-                            </div>
-                            <div class="slide-info">
-                                <p class="slide-description">
-                                    Imprescindíveis para diminuir o custo de tráfego a longo prazo e aumentar a autoridade da marca no mercado.
-                                </p>
-                                <ul class="slide-features">
-                                    <li>Branding Consistente</li>
-                                    <li>Conteúdo de Valor</li>
-                                    <li>Autoridade no Mercado</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </article>
-                </div>
-
-            </div>
-            
-            <div class="method-dots">
-                <div class="dot active"></div>
-                <div class="dot"></div>
-                <div class="dot"></div>
-                <div class="dot"></div>
-                <div class="dot"></div>
-                <div class="dot"></div>
-                <div class="dot"></div>
             </div>
         </section>
         <!-- 5. IARA SECTION (AI Chat) -->
