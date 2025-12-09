@@ -200,48 +200,60 @@ function initMethod() {
     });
 }
 
-// CASES - ONE BY ONE REVEAL WITH COUNTERS
+// CASES - HORIZONTAL SCROLL SLIDER
 function initCases() {
     const section = document.querySelector('.cases-section');
-    const cards = document.querySelectorAll('.case-card');
+    const slider = document.querySelector('.cases-slider');
+    const slides = document.querySelectorAll('.case-slide');
     
-    if (!section || cards.length === 0) return;
+    if (!section || !slider || slides.length === 0) return;
+    
+    // Calculate the exact scroll distance needed
+    const getScrollAmount = () => {
+        return slider.scrollWidth - window.innerWidth;
+    };
 
-    // Animate each card one by one
-    cards.forEach((card, i) => {
-        const counters = card.querySelectorAll('.stat-num.counter');
-        
-        // Card reveal animation
-        gsap.from(card, {
-            scrollTrigger: {
-                trigger: card,
-                start: 'top 80%',
-                toggleActions: 'play none none none',
-                onEnter: () => {
-                    // Animate counters when card enters view
-                    counters.forEach(counter => {
-                        const target = parseInt(counter.dataset.target) || 0;
-                        const prefix = counter.dataset.prefix || '';
-                        const suffix = counter.dataset.suffix || '';
-                        
-                        let obj = { val: 0 };
-                        gsap.to(obj, {
-                            val: target,
-                            duration: 2,
-                            ease: 'power2.out',
-                            onUpdate: () => {
-                                counter.textContent = prefix + Math.ceil(obj.val) + suffix;
-                            }
-                        });
-                    });
+    // Create the horizontal scroll animation
+    gsap.to(slider, {
+        x: () => -getScrollAmount(),
+        ease: "none",
+        scrollTrigger: {
+            trigger: section,
+            pin: true,
+            scrub: 0.5,
+            start: "top top",
+            end: () => `+=${getScrollAmount()}`,
+            invalidateOnRefresh: true,
+            onUpdate: (self) => {
+                // Animate counters when we scroll past intro slide
+                if (self.progress > 0.1) {
+                    animateCaseCounters();
                 }
-            },
-            y: 80,
-            opacity: 0,
-            scale: 0.95,
-            duration: 0.8,
-            delay: i * 0.15,
-            ease: 'power3.out'
+            }
+        }
+    });
+}
+
+// Animate case counters (called once)
+let countersAnimated = false;
+function animateCaseCounters() {
+    if (countersAnimated) return;
+    countersAnimated = true;
+    
+    const counters = document.querySelectorAll('.cases-slider .counter');
+    counters.forEach(counter => {
+        const target = parseInt(counter.dataset.target) || 0;
+        const prefix = counter.dataset.prefix || '';
+        const suffix = counter.dataset.suffix || '';
+        
+        let obj = { val: 0 };
+        gsap.to(obj, {
+            val: target,
+            duration: 2,
+            ease: 'power2.out',
+            onUpdate: () => {
+                counter.textContent = prefix + Math.ceil(obj.val) + suffix;
+            }
         });
     });
 }

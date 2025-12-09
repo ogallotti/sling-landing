@@ -56,7 +56,7 @@
         <!-- 1. HERO SECTION -->
         <section class="hero">
             <nav class="hero-nav">
-                <div class="nav-logo">SLING</div>
+                <div class="nav-logo">Sling</div>
                 <div class="nav-menu-btn">
                     <div class="menu-lines"></div>
                 </div>
@@ -159,32 +159,41 @@
         <!-- Lenis Smooth Scroll -->
         <script src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script> 
 
-        <!-- 3. CASES DE SUCESSO -->
+        <!-- 3. CASES DE SUCESSO (HORIZONTAL SCROLL) -->
         <section class="cases-section">
-            <div class="cases-container">
-                <div class="cases-header">
-                    <h2 class="section-title">CASES</h2>
-                    <div class="section-number">[03]</div>
+            <div class="cases-slider">
+                
+                <!-- INTRO SLIDE -->
+                <div class="case-slide intro-slide">
+                    <div class="intro-content">
+                        <div class="intro-header">
+                            <h2 class="section-title">CASES</h2>
+                            <div class="section-number">[03]</div>
+                        </div>
+                        <div class="intro-text">
+                            <p>Resultados reais.<br>Transformação comprovada.</p>
+                        </div>
+                        <div class="scroll-hint">
+                            <span>Deslize para ver os cases</span>
+                            <span class="arrow">→</span>
+                        </div>
+                    </div>
                 </div>
-
-                <div class="cases-intro">
-                    <p>Resultados reais.<br>Transformação comprovada.</p>
-                </div>
-
-                <div class="cases-grid">
-                    <!-- Case 01: Dr. Demian -->
-                    <article class="case-card" data-tilt>
-                        <div class="case-image">
-                            <img src="assets/images/cases/dr-demian.png" alt="Dr. Demian Borges" class="case-photo">
+                
+                <!-- Case 01: Dr. Demian -->
+                <div class="case-slide">
+                    <article class="case-card-full">
+                        <div class="case-image-full">
+                            <img src="assets/images/cases/dr-demian.png" alt="Dr. Demian Borges" class="case-photo-full">
                             <div class="case-glow"></div>
                         </div>
-                        <div class="case-info">
+                        <div class="case-info-full">
                             <h3 class="case-name">Dr. Demian Borges</h3>
                             <div class="case-tags">
                                 <span class="tag">Medicina Integrativa</span>
                                 <span class="tag">Lançamento & Perpétuo</span>
                             </div>
-                            <div class="case-stats">
+                            <div class="case-stats-full">
                                 <div class="case-stat">
                                     <span class="stat-num counter" data-target="400" data-prefix="+" data-suffix="k">0</span>
                                     <span class="stat-text">Seguidores</span>
@@ -200,20 +209,22 @@
                             </div>
                         </div>
                     </article>
+                </div>
 
-                    <!-- Case 02: Tábita Cintra -->
-                    <article class="case-card" data-tilt>
-                        <div class="case-image">
-                            <img src="assets/images/cases/tabita-cintra.png" alt="Tábita Cintra" class="case-photo">
+                <!-- Case 02: Tábita Cintra -->
+                <div class="case-slide">
+                    <article class="case-card-full">
+                        <div class="case-image-full">
+                            <img src="assets/images/cases/tabita-cintra.png" alt="Tábita Cintra" class="case-photo-full">
                             <div class="case-glow"></div>
                         </div>
-                        <div class="case-info">
+                        <div class="case-info-full">
                             <h3 class="case-name">Tábita Cintra</h3>
                             <div class="case-tags">
                                 <span class="tag">Estética</span>
                                 <span class="tag">Escala Massiva</span>
                             </div>
-                            <div class="case-stats">
+                            <div class="case-stats-full">
                                 <div class="case-stat">
                                     <span class="stat-num counter" data-target="600" data-prefix="+" data-suffix="k">0</span>
                                     <span class="stat-text">Seguidores</span>
@@ -229,20 +240,22 @@
                             </div>
                         </div>
                     </article>
+                </div>
 
-                    <!-- Case 03: Malu Celestino -->
-                    <article class="case-card" data-tilt>
-                        <div class="case-image">
-                            <img src="assets/images/cases/malu-celestino.png" alt="Malu Celestino" class="case-photo">
+                <!-- Case 03: Malu Celestino -->
+                <div class="case-slide">
+                    <article class="case-card-full">
+                        <div class="case-image-full">
+                            <img src="assets/images/cases/malu-celestino.png" alt="Malu Celestino" class="case-photo-full">
                             <div class="case-glow"></div>
                         </div>
-                        <div class="case-info">
+                        <div class="case-info-full">
                             <h3 class="case-name">Malu Celestino</h3>
                             <div class="case-tags">
                                 <span class="tag">Influencer</span>
                                 <span class="tag">Recorrência</span>
                             </div>
-                            <div class="case-stats">
+                            <div class="case-stats-full">
                                 <div class="case-stat">
                                     <span class="stat-num counter" data-target="100" data-prefix="+" data-suffix="k">0</span>
                                     <span class="stat-text">Seguidores</span>
@@ -259,6 +272,7 @@
                         </div>
                     </article>
                 </div>
+                
             </div>
         </section>
 
@@ -267,6 +281,24 @@
             <div class="method-container">
                 <!-- Slider Track - GSAP will translate this horizontally -->
                 <div class="method-slider">
+                    
+                    <!-- SLIDE INTRO -->
+                    <div class="method-slide intro-slide">
+                        <div class="intro-content">
+                            <div class="intro-header">
+                                <h2 class="section-title">O MÉTODO</h2>
+                                <div class="section-number">[04]</div>
+                            </div>
+                            <div class="intro-text">
+                                <p>6 pilares estratégicos<br>para escalar seu negócio digital.</p>
+                                <p class="intro-subtitle">Um ecossistema completo de crescimento.</p>
+                            </div>
+                            <div class="scroll-hint">
+                                <span>Deslize para explorar</span>
+                                <span class="arrow">→</span>
+                            </div>
+                        </div>
+                    </div>
                     
                     <!-- SLIDE 01: Esteira de Produtos -->
                     <div class="method-slide">
